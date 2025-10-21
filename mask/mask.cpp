@@ -19,6 +19,8 @@ int main()
              }
     }
 
+
+    //igijuiy
      for (int i = 0; i < 5; i++) {
 
      std::cout << a[i] << std::endl;
