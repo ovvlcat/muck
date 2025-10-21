@@ -3,42 +3,57 @@
 
 #include <iostream>
 
+using namespace std;
+
 int main()
 {
-    
-    int a[5] { 7,5,-1,3,-7 };
-   
-    for (int i = 0; i < 5; i++)
+    cout << "name\t" << "count\t" << "price\n";
+    string text[3]{ "melon", "berry", "cherry" };
+    int count[3]{ 3, 50, 30 };
+    int price[3]{ 40, 150, 100 };
+    int wallet = 2000;
+    string chose;
+
+    for (int i = 0; i < 3; i++)
     {
-         for (int j = 0; j < 4; j++)
-             if (a[j] > a[j + 1])
-             {
-                 int n = a[j];
-                 a[j] = a[j + 1];
-                 a[j + 1] = n;
-             }
+        cout << text[i] << "\t" << count[i] << "\t" << price[i] << "\n";
+    }
+
+    cout << "enter chose\n";
+    cin >> chose;
+    for (int i = 0; i < 3; i++)
+    {
+        if (chose == text[i])
+        {
+            cout << "enter count\n";
+
+
+
+
+
+
+
+        }
     }
 
 
-    //igijuiy
-     for (int i = 0; i < 5; i++) {
 
-     std::cout << a[i] << std::endl;
-     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    /*  if (chose == "melon")
+        {
+            cout << text[0] << "\t" << count[0] << "\t" << price[0] << "\n" << endl;
+        }
+        else if (chose == "berry")
+        {
+            cout << text[1] << "\t" << count[1] << "\t" << price[1] << "\n" << endl;
+        }
+        else if (chose == "cherry")
+        {
+            cout << text[2] << "\t" << count[2] << "\t" << price[2] << "\n" << endl;
+        }
+        else
+        {
+            
+        }*/
 
 
 
@@ -48,6 +63,38 @@ int main()
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+    //int a[5] { 7,5,-1,3,-7 };
+   
+    //for (int i = 0; i < 5; i++)
+    //{
+    //     for (int j = 0; j < 4; j++)
+    //         if (a[j] > a[j + 1])
+    //         {
+    //             int n = a[j];
+    //             a[j] = a[j + 1];
+    //             a[j + 1] = n;
+    //         }
+    //}
+
+
+    ////igijuiy
+    // for (int i = 0; i < 5; i++) 
+    // {
+    //     std::cout << a[i] << std::endl;
+    // }
+
+    
 
 
 
