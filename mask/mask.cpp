@@ -1,4 +1,4 @@
-// mask.cpp : This file contains the 'main' function. Program execution begins and ends there.
+﻿// mask.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
 #include <iostream>
@@ -7,78 +7,158 @@
 
 using namespace std;
 
-struct Product_ {
-
+struct locs
+{
     string name;
-    int count;
-    int price;
-
+    string desc;
+    int id;
 };
 
+struct hero
+{
+    string name;
+    string desc;
+    int hp;
+    int current_loc=1;
+};
 
-void magaz() {
+vector<locs>location;
+hero character;
 
-    cout << "name\t" << "count\t" << "price\n";
-    string text[3]{ "melon", "berry", "cherry" };
-    int count[3]{ 3, 50, 30 };
-    int price[3]{ 140, 15, 10 };
-    int wallet = 1000;
-    string chose;
-    int number;
-    int basket[3]{ 0, 0, 0 };
-    int SPEND = 0;
+void locas()
+{
+    location.push_back({ "Honeywood" ,"Small village on bonderland of Kingdom", 1 });
+    location.push_back({ "Dark forest", "Forest near with Honeywood", 2 });
+};
 
+void heroes()
+{
+    character.name = "Cloud";
+    character.desc = "Main character";
+    character.hp = 50;
+};
+
+int main()
+{
+    locas();
+    heroes();
+    int way;
+    
     while (true)
     {
-        for (int i = 0; i < 3; i++)
+        /*введите локу в которую хотите пойти и выводс списка лок*/
+        cin >> way;
+        if (way!= character.current_loc)
         {
-            cout << text[i] << "\t" << count[i] << "\t" << price[i] << "\n";
+            character.current_loc = way;
+            cout << "You is here\n";
         }
-        cout << "wallet\t" << wallet << "\n";
-
-        cout << "enter chose\n";
-        cin >> chose;
-
-        if (chose == "basket")
+        else
         {
-            for (int i = 0; i < 3; i++)
-            {
-                cout << text[i] << "\t" << basket[i] << "\n";
-            }
-            cout << "SPEND:\t" << SPEND << endl;
-        }
-
-        for (int i = 0; i < 3; i++)
-        {
-            if (chose == text[i])
-            {
-                cout << "enter count\n";
-                cin >> number;
-                if (number > 0 && number <= count[i])
-                {
-                    if (wallet >= number * price[i])
-                    {
-                        count[i] -= number;
-                        basket[i] += number;
-                        wallet -= number * price[i];
-                        SPEND += number * price[i];
-                    }
-                    else
-                    {
-                        cout << "need " << number * price[i] << "\n";
-                    }
-                }
-                else
-                {
-                    cout << "not found\n";
-                }
-            }
+            cout << location[character.current_loc].name << "\n" << location[character.current_loc].desc << "\n";
         }
     }
 
 
-int main()
-{
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+//struct Product_ {
+//
+//    string name;
+//    int count;
+//    int price;
+//
+//};
+//
+//
+//void magaz() {
+//
+//    cout << "name\t" << "count\t" << "price\n";
+//    string text[3]{ "melon", "berry", "cherry" };
+//    int count[3]{ 3, 50, 30 };
+//    int price[3]{ 140, 15, 10 };
+//    int wallet = 1000;
+//    string chose;
+//    int number;
+//    int basket[3]{ 0, 0, 0 };
+//    int SPEND = 0;
+//
+//    while (true)
+//    {
+//        for (int i = 0; i < 3; i++)
+//        {
+//            cout << text[i] << "\t" << count[i] << "\t" << price[i] << "\n";
+//        }
+//        cout << "wallet\t" << wallet << "\n";
+//
+//        cout << "enter chose\n";
+//        cin >> chose;
+//
+//        if (chose == "basket")
+//        {
+//            for (int i = 0; i < 3; i++)
+//            {
+//                cout << text[i] << "\t" << basket[i] << "\n";
+//            }
+//            cout << "SPEND:\t" << SPEND << endl;
+//        }
+//
+//        for (int i = 0; i < 3; i++)
+//        {
+//            if (chose == text[i])
+//            {
+//                cout << "enter count\n";
+//                cin >> number;
+//                if (number > 0 && number <= count[i])
+//                {
+//                    if (wallet >= number * price[i])
+//                    {
+//                        count[i] -= number;
+//                        basket[i] += number;
+//                        wallet -= number * price[i];
+//                        SPEND += number * price[i];
+//                    }
+//                    else
+//                    {
+//                        cout << "need " << number * price[i] << "\n";
+//                    }
+//                }
+//                else
+//                {
+//                    cout << "not found\n";
+//                }
+//            }
+//        }
+//    }
+//
+//}
+//
+// вставить in t main()
+//{
     /*Product_ s[2]{ {"Aboba", 4, 900},
                    {"Biba", 1, 10} };
     vector<Product_> shop;
@@ -92,67 +172,67 @@ int main()
         cout << shop[i].name << "\t" << shop[i].count << endl;
     }*/
 
-    vector<Product_> shop;
+    //vector<Product_> shop;
 
-    shop.push_back({ "melon", 3, 140 });
-    shop.push_back({ "berry", 50, 15 });
-    shop.push_back({ "cherry", 30, 10 });
-    int wallet = 1000;
-    string chose;
-    int number;
-    int basket[3]{ 0, 0, 0 };
-    vector<Product_> bas;
-    int spend = 0;
+    //shop.push_back({ "melon", 3, 140 });
+    //shop.push_back({ "berry", 50, 15 });
+    //shop.push_back({ "cherry", 30, 10 });
+    //int wallet = 1000;
+    //string chose;
+    //int number;
+    //int basket[3]{ 0, 0, 0 };
+    //vector<Product_> bas;
+    //int spend = 0;
 
-    while (true)
-    {
-        for (int i = 0; i < shop.size(); i++)
-        {
-            cout << shop[i].name << "\t" << shop[i].count << "\t" << shop[i].price << endl;
-        }
-        cout << "wallet\t" << wallet << "\n";
+    //while (true)
+    //{
+    //    for (int i = 0; i < shop.size(); i++)
+    //    {
+    //        cout << shop[i].name << "\t" << shop[i].count << "\t" << shop[i].price << endl;
+    //    }
+    //    cout << "wallet\t" << wallet << "\n";
 
-        cout << "enter chose\n";
-        cin >> chose;
+    //    cout << "enter chose\n";
+    //    cin >> chose;
 
-        if (chose == "basket")
-        {
-            for (int i = 0; i < bas.size(); i++)
-            {
-                cout << bas[i].name << "\t" << bas[i].count << "\t" <<bas[i].price <<  "\n";
-            }
-            cout << "spend:\t" << spend << endl;
-        }
+    //    if (chose == "basket")
+    //    {
+    //        for (int i = 0; i < bas.size(); i++)
+    //        {
+    //            cout << bas[i].name << "\t" << bas[i].count << "\t" <<bas[i].price <<  "\n";
+    //        }
+    //        cout << "spend:\t" << spend << endl;
+    //    }
 
-        for (int i = 0; i < shop.size(); i++)
-        {
-            if (chose == shop[i].name)
-            {
-                cout << "enter count\n";
-                cin >> number;
-                if (number > 0 && number <= shop[i].count)
-                {
-                    if (wallet >= number * shop[i].price)
-                    {
-                        shop[i].count -= number;
-                        //basket[i] += number;
-                        bas.push_back({ shop[i].name, number, number * shop[i].price });
-                        wallet -= number * shop[i].price;
-                        spend += number * shop[i].price;
-                    }
-                    else
-                    {
-                        cout << "need " << number * shop[i].price << "\n";
-                    }
-                }
-                else
-                {
-                    cout << "not found\n";
-                }
-            }
-        }
-    }
-    
+    //    for (int i = 0; i < shop.size(); i++)
+    //    {
+    //        if (chose == shop[i].name)
+    //        {
+    //            cout << "enter count\n";
+    //            cin >> number;
+    //            if (number > 0 && number <= shop[i].count)
+    //            {
+    //                if (wallet >= number * shop[i].price)
+    //                {
+    //                    shop[i].count -= number;
+    //                    //basket[i] += number;
+    //                    bas.push_back({ shop[i].name, number, number * shop[i].price });
+    //                    wallet -= number * shop[i].price;
+    //                    spend += number * shop[i].price;
+    //                }
+    //                else
+    //                {
+    //                    cout << "need " << number * shop[i].price << "\n";
+    //                }
+    //            }
+    //            else
+    //            {
+    //                cout << "not found\n";
+    //            }
+    //        }
+    //    }
+    //}
+    //
     
     
     
@@ -227,6 +307,6 @@ int main()
             }
             q++;
         }*/
-}
+};
 
 
