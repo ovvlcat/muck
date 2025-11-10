@@ -76,7 +76,6 @@ void magaz() {
         }
     }
 
-}
 
 int main()
 {
