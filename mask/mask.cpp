@@ -28,7 +28,7 @@ hero character;
 void locas()
 {
     location.push_back({ "Honeywood" ,"Small village on bonderland of Kingdom", 1 });
-    location.push_back({ "Dark forest", "Forest near with Honeywood", 2 });
+    location.push_back({ "Lightwood forest", "Forest near with Honeywood", 2 });
 };
 
 void heroes()
@@ -46,7 +46,9 @@ int main()
     
     while (true)
     {
-        /*введите локу в которую хотите пойти и выводс списка лок*/
+        /*введите локу в которую хотите пойти и вывод с списка лок*/
+        cout << "0 - Honeywood\n" << "1 - Lightwood forest\n";
+        cout << character.current_loc << " You in " << location[character.current_loc].name << "\n";
         cin >> way;
         if (way!= character.current_loc)
         {
