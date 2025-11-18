@@ -7,11 +7,20 @@
 
 using namespace std;
 
+
+struct items
+{
+    string name;
+    string desc;
+    string option;
+};
+
 struct locs
 {
     string name;
     string desc;
     int id;
+    vector<items>loot;
 };
 
 struct hero
@@ -19,46 +28,131 @@ struct hero
     string name;
     string desc;
     int hp;
-    int current_loc=1;
+    int damage;
+    int current_loc;
+    vector<items>inventory;
+};
+
+struct enemy
+{
+    string name;
+    string desc;
+    int hp;
+    int damage;
+    int current_loc;
 };
 
 vector<locs>location;
+items Rusty_dagger;
+items Forest_berry;
+items Leather_armor;
 hero character;
+enemy monster;
 
 void locas()
 {
-    location.push_back({ "Honeywood" ,"Small village on bonderland of Kingdom", 1 });
+    location.push_back({ "Honeywood", "Small village on bonderland of Kingdom", 1 });
     location.push_back({ "Lightwood forest", "Forest near with Honeywood", 2 });
+    location.push_back({ "Honeywood's lake", "Lake near with Honeywood", 3 });
 };
+
+void Items()
+{
+    Rusty_dagger.name = "Rusty_dagger";
+    Rusty_dagger.desc = "Iron rusty dagger";
+    Rusty_dagger.option = "Increas damage on 5";
+
+    Forest_berry.name = "Forest_berry";
+    Forest_berry.desc = "Yammy red berry";
+    Forest_berry.option = "Restores HP on 10";
+
+    Leather_armor.name = "Leather_armor";
+    Leather_armor.desc = "Armor made of wolf skin";
+    Leather_armor.option = "Reduces taken damage on 5";
+};
+
 
 void heroes()
 {
     character.name = "Cloud";
     character.desc = "Main character";
+    character.current_loc = 0;
     character.hp = 50;
+    character.damage = 10;
+    character.inventory.push_back({ Rusty_dagger.name, Rusty_dagger.desc, Rusty_dagger.option });
+    character.inventory.push_back({ Leather_armor.name, Leather_armor.desc, Leather_armor.option });
 };
+
+void enemies()
+{
+    monster.name = "Wolf";
+    monster.desc = "Wild animal";
+    monster.hp = 30;
+    monster.damage = 10;
+    monster.current_loc = 1;
+}
 
 int main()
 {
     locas();
     heroes();
+    enemies();
+    Items();
+
     int way;
     
     while (true)
     {
-        /*введите локу в которую хотите пойти и вывод с списка лок*/
+        /*путешествие между локациями*/
         cout << "0 - Honeywood\n" << "1 - Lightwood forest\n";
         cout << character.current_loc << " You in " << location[character.current_loc].name << "\n";
         cin >> way;
         if (way!= character.current_loc)
         {
             character.current_loc = way;
-            cout << "You is here\n";
+            cout << location[character.current_loc].name << "\n" << location[character.current_loc].desc << "\n";
         }
         else
         {
-            cout << location[character.current_loc].name << "\n" << location[character.current_loc].desc << "\n";
+            cout << "You is here\n";
         }
+
+        /*сделать отображение инвентаря и удаление из него предметов*/
+        /*почитать про swich и case*/
+
+        /*фаза боя*/
+        if (character.current_loc == monster.current_loc)
+        {
+            while (character.hp > 0 && monster.hp > 0)
+            {
+                cout << monster.name << " is appeared\n";
+                string action;
+                string attack;
+                cout << "Chose action " << "Attack or Wait\n";
+                cin >> action;
+                if (action == "attack")
+                {
+                    monster.hp -= character.damage;
+                    cout << monster.name << " Hp = " << monster.hp << "\n";
+                }
+                cout << monster.name << " is attack\n";
+                character.hp -= monster.damage;
+                cout << character.name << " HP = " << character.hp << "\n";
+
+                if (monster.hp <= 0)
+                {
+                    cout << monster.name << " is defead\n";
+                }
+                
+                if (character.hp <= 0)
+                {
+                    cout << character.name << " is defead\n";
+                }
+            }
+        }
+
+        
+
     }
 
 
