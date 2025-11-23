@@ -46,6 +46,7 @@ vector<locs>location;
 items Rusty_dagger;
 items Forest_berry;
 items Leather_armor;
+items Gold_coin;
 hero character;
 enemy monster;
 
@@ -54,6 +55,7 @@ void locas()
     location.push_back({ "Honeywood", "Small village on bonderland of Kingdom", 1 });
     location.push_back({ "Lightwood forest", "Forest near with Honeywood", 2 });
     location.push_back({ "Honeywood's lake", "Lake near with Honeywood", 3 });
+    location.push_back({ "Darkwood forest", "Wrong forest near with Honeywood", 4 });
 };
 
 void Items()
@@ -68,7 +70,11 @@ void Items()
 
     Leather_armor.name = "Leather_armor";
     Leather_armor.desc = "Armor made of wolf skin";
-    Leather_armor.option = "Reduces taken damage on 5";
+    Leather_armor.option = "Reduces taken damage on 1";
+
+    Gold_coin.name = "Gold_coin";
+    Gold_coin.desc = "MONEY!";
+    Gold_coin.option = "Just a money";
 };
 
 
@@ -81,9 +87,10 @@ void heroes()
     character.damage = 10;
     character.inventory.push_back({ Rusty_dagger.name, Rusty_dagger.desc, Rusty_dagger.option });
     character.inventory.push_back({ Leather_armor.name, Leather_armor.desc, Leather_armor.option });
+    character.inventory.push_back({ Gold_coin.name, Gold_coin.desc, Gold_coin.option });
 };
 
-void enemies()
+void enemie1()
 {
     monster.name = "Wolf";
     monster.desc = "Wild animal";
@@ -92,11 +99,31 @@ void enemies()
     monster.current_loc = 1;
 }
 
+void enemie2()
+{
+    monster.name = "Crab";
+    monster.desc = "Giant crab";
+    monster.hp = 20;
+    monster.damage = 3;
+    monster.current_loc = 2;
+}
+
+void enemie3()
+{
+    monster.name = "Rogue";
+    monster.desc = "Criminal person";
+    monster.hp = 40;
+    monster.damage = 10;
+    monster.current_loc = 3;
+}
+
 int main()
 {
     locas();
     heroes();
-    enemies();
+    enemie1();
+    enemie2();
+    enemie3();
     Items();
 
     int way;
@@ -104,7 +131,7 @@ int main()
     while (true)
     {
         /*путешествие между локациями*/
-        cout << "0 - Honeywood\n" << "1 - Lightwood forest\n";
+        cout << "0 - Honeywood\n" << "1 - Lightwood forest\n" << "2 - Honeywood's lake\n" << "3 - Darkwood forest\n";
         cout << character.current_loc << " You in " << location[character.current_loc].name << "\n";
         cin >> way;
         if (way!= character.current_loc)
@@ -147,6 +174,11 @@ int main()
                 if (character.hp <= 0)
                 {
                     cout << character.name << " is defead\n";
+                }
+
+                if (monster.name == "Rogue")
+                {
+                    character.inventory.push_back({ Gold_coin.name, Gold_coin.desc, Gold_coin.option });
                 }
             }
         }
