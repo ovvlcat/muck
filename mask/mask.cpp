@@ -1,4 +1,4 @@
-﻿// mask.cpp : This file contains the 'main' function. Program execution begins and ends there.
+// mask.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
 #include <iostream>
@@ -53,7 +53,7 @@ enemy monster;
 void locas()
 {
     location.push_back({ "Honeywood", "Small village on bonderland of Kingdom", 1 });
-    location.push_back({ "Lightwood forest", "Forest near with Honeywood", 2 });
+    location.push_back({ "Lightwood forest", "Forest near with Honeywood", 2 , {{Gold_coin.name, Gold_coin.desc, Gold_coin.option}} });
     location.push_back({ "Honeywood's lake", "Lake near with Honeywood", 3 });
     location.push_back({ "Darkwood forest", "Wrong forest near with Honeywood", 4 });
 };
@@ -119,18 +119,31 @@ void enemie3()
 
 int main()
 {
+    Items();
     locas();
     heroes();
     enemie1();
     enemie2();
     enemie3();
-    Items();
 
     int way;
     
     while (true)
     {
-        /*путешествие между локациями*/
+        /*????? ?????????*/
+        string operation;
+        cout << "Open Inventory?\n";
+        cin >> operation;
+        if (operation == "open")
+        {
+            cout << "Inventory\n" << "\n";
+            for (int i = 0; i < character.inventory.size(); i++)
+            {
+                cout << character.inventory[i].name << "\n" << character.inventory[i].desc << "\n" << character.inventory[i].option << "\n" << "\n";
+            }
+        }
+
+        /*??????????? ????? ?????????*/
         cout << "0 - Honeywood\n" << "1 - Lightwood forest\n" << "2 - Honeywood's lake\n" << "3 - Darkwood forest\n";
         cout << character.current_loc << " You in " << location[character.current_loc].name << "\n";
         cin >> way;
@@ -144,17 +157,28 @@ int main()
             cout << "You is here\n";
         }
 
-        /*сделать отображение инвентаря и удаление из него предметов используя erase и clear*/
-        /*почитать про swich и case*/
+        /*??? ???????*/
+        cout << "Loot it?\n";
+        cin >> operation;
+        if (operation == "loot")
+        {
+            cout << "You found\n";
+            for (int i = 0; i < location[character.current_loc].loot.size(); i++)
+            {
+                cout << location[character.current_loc].loot[i].name << "\n";
+            }
+            character.inventory.push_back({ Gold_coin.name, Gold_coin.desc, Gold_coin.option });
+        }
+        /*???????? ??? ??????? ? ?? ???????, ??? ?????????*/
+        /*???????? ??? swich ? case*/
 
-        /*фаза боя*/
+        /*???? ???*/
         if (character.current_loc == monster.current_loc)
         {
             while (character.hp > 0 && monster.hp > 0)
             {
                 cout << monster.name << " is appeared\n";
                 string action;
-                string attack;
                 cout << "Chose action " << "Attack or Wait\n";
                 cin >> action;
                 if (action == "attack")
@@ -174,11 +198,8 @@ int main()
                 if (character.hp <= 0)
                 {
                     cout << character.name << " is defead\n";
-                }
-
-                if (monster.name == "Rogue")
-                {
-                    character.inventory.push_back({ Gold_coin.name, Gold_coin.desc, Gold_coin.option });
+                    character.inventory.erase(character.inventory.begin() + 4);         /*????? if ??????? ????????? ???????? ? ???????? ??????????*/
+                    //cout << 
                 }
             }
         }
@@ -285,7 +306,7 @@ int main()
 //
 //}
 //
-// вставить in t main()
+// ???????? in t main()
 //{
     /*Product_ s[2]{ {"Aboba", 4, 900},
                    {"Biba", 1, 10} };
