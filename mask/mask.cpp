@@ -52,10 +52,10 @@ enemy monster;
 
 void locas()
 {
-    location.push_back({ "Honeywood", "Small village on bonderland of Kingdom", 1 });
-    location.push_back({ "Lightwood forest", "Forest near with Honeywood", 2 , {{Gold_coin.name, Gold_coin.desc, Gold_coin.option}} });
-    location.push_back({ "Honeywood's lake", "Lake near with Honeywood", 3 });
-    location.push_back({ "Darkwood forest", "Wrong forest near with Honeywood", 4 });
+    location.push_back({ "Honeywood", "Small village on bonderland of Kingdom", 1});
+    location.push_back({ "Lightwood forest", "Forest near with Honeywood", 2 , {{Forest_berry.name, Forest_berry.desc, Forest_berry.option}} });
+    location.push_back({ "Honeywood's lake", "Lake near with Honeywood", 3, {{Gold_coin.name, Gold_coin.desc, Gold_coin.option}} });
+    location.push_back({ "Darkwood forest", "Wrong forest near with Honeywood", 4});
 };
 
 void Items()
@@ -66,7 +66,7 @@ void Items()
 
     Forest_berry.name = "Forest_berry";
     Forest_berry.desc = "Yammy red berry";
-    Forest_berry.option = "Restores HP on 10";
+    Forest_berry.option = "Restores HP on 15";
 
     Leather_armor.name = "Leather_armor";
     Leather_armor.desc = "Armor made of wolf skin";
@@ -130,11 +130,11 @@ int main()
     
     while (true)
     {
-        /*????? ?????????*/
+        /*отображение инвентаря*/
         string operation;
-        cout << "Open Inventory?\n";
+        cout << "Open Inventory? y/n \n";
         cin >> operation;
-        if (operation == "open")
+        if (operation == "y")
         {
             cout << "Inventory\n" << "\n";
             for (int i = 0; i < character.inventory.size(); i++)
@@ -143,7 +143,7 @@ int main()
             }
         }
 
-        /*??????????? ????? ?????????*/
+        /*перемещение между локациями*/
         cout << "0 - Honeywood\n" << "1 - Lightwood forest\n" << "2 - Honeywood's lake\n" << "3 - Darkwood forest\n";
         cout << character.current_loc << " You in " << location[character.current_loc].name << "\n";
         cin >> way;
@@ -157,31 +157,58 @@ int main()
             cout << "You is here\n";
         }
 
-        /*??? ???????*/
-        cout << "Loot it?\n";
+        /*лут локации*/
+        cout << "Loot it? y/n \n";
         cin >> operation;
-        if (operation == "loot")
+        if (operation == "y")
         {
-            cout << "You found\n";
+            /*cout << "You found\n";
             for (int i = 0; i < location[character.current_loc].loot.size(); i++)
             {
                 cout << location[character.current_loc].loot[i].name << "\n";
             }
-            character.inventory.push_back({ Gold_coin.name, Gold_coin.desc, Gold_coin.option });
-        }
-        /*???????? ??? ??????? ? ?? ???????, ??? ?????????*/
-        /*???????? ??? swich ? case*/
+            character.inventory.push_back({ Gold_coin.name, Gold_coin.desc, Gold_coin.option });*/
 
-        /*???? ???*/
+                /* if (location[character.current_loc].loot.empty())
+                   {
+                      cout << "You didn't find anything\n";
+                   }
+            
+                   else
+                   {
+                      cout << "You found\n";
+                      for (int i = 0; i < location[character.current_loc].loot.size(); i++)
+                      {
+                         cout << location[character.current_loc].loot[i].name << "\n";
+                      }
+                      character.inventory.push_back({ Gold_coin.name, Gold_coin.desc, Gold_coin.option });
+                    }*/
+            if (location[character.current_loc].loot.empty())
+            {
+                cout << "You didn't find anything\n";
+            }
+            else
+            {
+                cout << "You found:\n";
+                for (int i = 0; i < location[character.current_loc].loot.size(); i++)
+                {
+                    cout << location[character.current_loc].loot[i].name << "\n";
+                    character.inventory.push_back({location[character.current_loc].loot[i].name,location[character.current_loc].loot[i].desc,location[character.current_loc].loot[i].option });
+                }
+            }
+        }
+                                                                                                            /*почитать про вектора и их функции, про структуры*/
+                                                                                                            /*почитать про swich и case*/
+        /*фаза боя*/
         if (character.current_loc == monster.current_loc)
         {
             while (character.hp > 0 && monster.hp > 0)
             {
                 cout << monster.name << " is appeared\n";
                 string action;
-                cout << "Chose action " << "Attack or Wait\n";
+                cout << "Chose action " << "Attack (a) || Defence (d) || Use item (i) || Wait\n";
                 cin >> action;
-                if (action == "attack")
+                if (action == "a")
                 {
                     monster.hp -= character.damage;
                     cout << monster.name << " Hp = " << monster.hp << "\n";
@@ -189,6 +216,16 @@ int main()
                 cout << monster.name << " is attack\n";
                 character.hp -= monster.damage;
                 cout << character.name << " HP = " << character.hp << "\n";
+
+                /*if (action == "d")
+                {
+
+                }*/
+
+                /*if (action == "i")
+                {
+
+                }*/
 
                 if (monster.hp <= 0)
                 {
@@ -198,14 +235,25 @@ int main()
                 if (character.hp <= 0)
                 {
                     cout << character.name << " is defead\n";
-                    character.inventory.erase(character.inventory.begin() + 4);         /*????? if ??????? ????????? ???????? ? ???????? ??????????*/
-                    //cout << 
+                    cout << "You lost \n";
+                    /*character.inventory.erase(character.inventory.begin() + 4);*/
+                                                                                                                  /*через if сделать сравнение названий и удаление одинаковых*/
+                    for (auto i = character.inventory.begin(); i != character.inventory.end();)
+                    {
+                        if (i->name == Gold_coin.name)
+                        {
+                            cout << i->name << "\n";
+                            i = character.inventory.erase(i);
+                        }
+
+                        else
+                        {
+                        i++;
+                        }
+                    }
                 }
             }
         }
-
-        
-
     }
 
 
