@@ -162,27 +162,6 @@ int main()
         cin >> operation;
         if (operation == "y")
         {
-            /*cout << "You found\n";
-            for (int i = 0; i < location[character.current_loc].loot.size(); i++)
-            {
-                cout << location[character.current_loc].loot[i].name << "\n";
-            }
-            character.inventory.push_back({ Gold_coin.name, Gold_coin.desc, Gold_coin.option });*/
-
-                /* if (location[character.current_loc].loot.empty())
-                   {
-                      cout << "You didn't find anything\n";
-                   }
-            
-                   else
-                   {
-                      cout << "You found\n";
-                      for (int i = 0; i < location[character.current_loc].loot.size(); i++)
-                      {
-                         cout << location[character.current_loc].loot[i].name << "\n";
-                      }
-                      character.inventory.push_back({ Gold_coin.name, Gold_coin.desc, Gold_coin.option });
-                    }*/
             if (location[character.current_loc].loot.empty())
             {
                 cout << "You didn't find anything\n";
@@ -208,25 +187,35 @@ int main()
                 string action;
                 cout << "Chose action " << "Attack (a) || Defence (d) || Use item (i) || Wait\n";
                 cin >> action;
+                
                 if (action == "a")
                 {
                     monster.hp -= character.damage;
                     cout << monster.name << " Hp = " << monster.hp << "\n";
                 }
+                
+                else if (action == "d")
+                {
+                    cout << character.name << "is defend" << "\n";
+                }
+                
+                //else if (action == "i")
+                //{
+
+                //}
+
                 cout << monster.name << " is attack\n";
-                character.hp -= monster.damage;
-                cout << character.name << " HP = " << character.hp << "\n";
-
-                /*if (action == "d")
+                if (action == "d")
                 {
-
-                }*/
-
-                /*if (action == "i")
+                    character.hp = character.hp - monster.damage + 1;
+                    cout << character.name << " HP = " << character.hp << "\n";
+                }
+                else
                 {
-
-                }*/
-
+                    character.hp -= monster.damage;
+                    cout << character.name << " HP = " << character.hp << "\n";
+                }
+  
                 if (monster.hp <= 0)
                 {
                     cout << monster.name << " is defead\n";
@@ -236,9 +225,7 @@ int main()
                 {
                     cout << character.name << " is defead\n";
                     cout << "You lost \n";
-                    /*character.inventory.erase(character.inventory.begin() + 4);*/
-                                                                                                                  /*через if сделать сравнение названий и удаление одинаковых*/
-                    for (auto i = character.inventory.begin(); i != character.inventory.end();)
+                    for (auto i = character.inventory.begin(); i != character.inventory.end();)                     /*через if сделать сравнение названий и удаление одинаковых*/
                     {
                         if (i->name == Gold_coin.name)
                         {
